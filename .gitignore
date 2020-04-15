@@ -24,6 +24,10 @@ hs_err_pid*
 
 # JetBrains
 .idea/
+*.iml
 
 # VS Code
 .vscode/
+
+# targer
+/target/
