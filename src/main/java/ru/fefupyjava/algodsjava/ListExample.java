@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListExample {
-    private List data = new ArrayList<Integer>();
+    private List data;
 
     public List getData() {
         return data;
