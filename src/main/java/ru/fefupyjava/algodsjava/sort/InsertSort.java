@@ -8,7 +8,7 @@ public class InsertSort extends Sort {
     @Override
     public List doSort(ArrayList<Integer> arrayList) {
 
-        for (int i = 1; i < arrayList.size() - 1; i++) {
+        for (int i = 1; i < arrayList.size(); i++) {
             int tmp = arrayList.get(i);
             int j = i - 1;
 
