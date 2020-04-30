@@ -43,13 +43,14 @@ public class PyramidalSort extends Sort {
 
     @Override
     public List doSort(ArrayList<Integer> arrayList) {
+        ArrayList<Integer> list = new ArrayList<>(arrayList);
         int N = arrayList.size();
 
-        BuildHeap(arrayList);
+        BuildHeap(list);
         for (int i = N - 1; i > -1; i--) {
-            SiftingDown(arrayList, i + 1, 0);
-            swap(arrayList, i, 0);
+            SiftingDown(list, i + 1, 0);
+            swap(list, i, 0);
         }
-        return arrayList;
+        return list;
     }
 }

@@ -19,10 +19,10 @@ public class TestPyramidalSort {
         for (int i = 0; i < 15; i++)
             actualList.add(rnd.nextInt(100));
 
-        ArrayList<Integer> expectedList = (ArrayList<Integer>) actualList.clone();
+        ArrayList<Integer> expectedList = new ArrayList<>(actualList);
         Collections.sort(expectedList);
 
-        sort.doSort(actualList);
-        Assert.assertEquals(expectedList, actualList);
+
+        Assert.assertEquals(expectedList, sort.doSort(actualList));
     }
 }
