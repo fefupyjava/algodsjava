@@ -6,7 +6,8 @@ import java.util.List;
 
 public class QuickSort extends Sort {
 
-    @Override
+
+
     public List doSort(ArrayList<Integer> arrayList) {
         return null;
     }
