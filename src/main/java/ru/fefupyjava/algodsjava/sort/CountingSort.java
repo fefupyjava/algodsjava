@@ -20,13 +20,14 @@ public class CountingSort extends Sort{
         for (int i : arrayList)
             numCounts[i + sdvig]++;
         int currentSortedIndex = 0;
+        ArrayList<Integer> NewArrayList = new ArrayList<>();
         for(int i = 0; i < numCounts.length; i++){
             while (numCounts[i]!=0){
-                arrayList.set(currentSortedIndex, i - sdvig);
+                NewArrayList.set(currentSortedIndex, i - sdvig);
                 numCounts[i]--;
                 currentSortedIndex++;
             }
         }
-        return arrayList;
+        return NewArrayList;
     }
 }

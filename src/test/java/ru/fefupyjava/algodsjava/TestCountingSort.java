@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import ru.fefupyjava.algodsjava.sort.CountingSort;
 import ru.fefupyjava.algodsjava.sort.Sort;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,17 +14,18 @@ public class TestCountingSort {
 
     @Test
     public void testCountingSort() throws Exception {
-        ArrayList<Integer> arrayList =new ArrayList<>();
-        for(int i = 0; i < random.nextInt(); i++){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int q = random.nextInt();
+        for(int i = 0; i < q; i++){
             arrayList.add(random.nextInt());
         }
 
-        ArrayList<Integer> TestAraayList = arrayList;
+        ArrayList<Integer> TestArrayList = (ArrayList<Integer>)arrayList.clone() ;
 
-        Collections.sort(TestAraayList);
+       // Collections.sort(TestArrayList);
         Sort sort = new CountingSort();
         //sort.doSort(arrayList);
 
-        Assert.assertEquals(TestAraayList, sort.doSort(arrayList));
+        Assert.assertEquals(TestArrayList, sort.doSort(arrayList));
     }
 }
