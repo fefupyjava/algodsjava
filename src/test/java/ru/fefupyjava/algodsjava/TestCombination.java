@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import ru.fefupyjava.algodsjava.algorithms.Combination;
 
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +63,24 @@ public class TestCombination {
 
         Combination comb = new Combination();
         Assert.assertEquals(res, comb.Run(data, 2, Combination.Kind.Naive));
+    }
+
+//    @Test
+    public void Test() throws Exception {
+        Integer[] data = new Integer[5];
+        for (int i = 0; i < 5; i++) {
+            data[i] = i + 1;
+        }
+
+        Combination comb = new Combination();
+
+        List<List<Integer>> res = comb.Run(data, 2, Combination.Kind.Recursive);
+
+        for (List<Integer> list : res) {
+            for (Integer item : list) {
+                System.out.print(item + " ");
+            }
+            System.out.println();
+        }
     }
 }
