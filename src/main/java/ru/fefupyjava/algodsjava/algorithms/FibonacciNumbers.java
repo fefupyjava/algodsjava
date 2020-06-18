@@ -1,48 +1,75 @@
 package ru.fefupyjava.algodsjava.algorithms;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class FibonacciNumbers {
-    public static HashMap<Integer, Integer> memoiz = new HashMap<>();
+    public enum Kind {
+        Naive,
+        Recursive,
+        Memoized,
+        Dynamic
+    }
 
-    public static int recursive(int n){
-        if (n < 2){
-            return n;
+    private static final HashMap<Integer, Integer> memoiz = new HashMap<>();
+
+    private static int recursive(int n) {
+        if (n <= 2) {
+            return n < 1 ? 0 : 1;
         }
+
         int number = recursive(n - 1) + recursive(n - 2);
         memoiz.put(n, number);
         return number;
     }
-    public static int memoized(int n){
+
+    private static int memoized(int n) {
         return memoiz.getOrDefault(n, 0);
     }
 
-    public static int run(int n, String kind) {
+    private static int naive(int n) {
+        int fib1 = 0;
+        int fib2 = 1;
+        memoiz.put(0, 0);
+        memoiz.put(1, 1);
+
+
+        for (int i = 2; i <= n; i++) {
+            if (i % 2 == 0) {
+                fib1 += fib2;
+                memoiz.put(i, fib1);
+            } else {
+                fib2 += fib1;
+                memoiz.put(i, fib2);
+            }
+        }
+
+        return n % 2 == 0 ? fib1 : fib2;
+    }
+
+    private static int dynamic(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        int[] fibonacciArray = new int[n + 1];
+        fibonacciArray[0] = 0;
+        fibonacciArray[1] = 1;
+        for (int i = 2; i <= n; i++)
+            fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
+        memoiz.put(n, fibonacciArray[n]);
+
+        return fibonacciArray[n];
+    }
+
+    public static int run(int n, Kind kind) {
         switch (kind) {
-            case "naive":
-                int fibonacci = 0;
-                int fibonacci1 = 0;
-                int fibonacci2 = 1;
-                for (int i = 2; i < n; i++) {
-                    fibonacci = fibonacci1 + fibonacci2;
-                    fibonacci1 = fibonacci2;
-                    fibonacci2 = fibonacci;
-                }
-                memoiz.put(n, fibonacci);
-                return fibonacci;
-            case "recursive":
-                return recursive(n);
-            case "memoized":
+            case Naive:
+                return naive(n);
+            case Recursive:
+                return n < 0 ? 0 : recursive(n);
+            case Memoized:
                 return memoized(n);
-            case "dynamic":
-                int[] fibonacciArray = new int[n];
-                fibonacciArray[0] = 0;
-                fibonacciArray[1] = 1;
-                for (int i = 2; i < n; i++) fibonacciArray[i] = fibonacciArray[i - 1] + fibonacciArray[i - 2];
-                memoiz.put(n, fibonacciArray[n - 1]);
-                return fibonacciArray[n - 1];
+            case Dynamic:
+                return dynamic(n);
         }
         return 0;
     }
